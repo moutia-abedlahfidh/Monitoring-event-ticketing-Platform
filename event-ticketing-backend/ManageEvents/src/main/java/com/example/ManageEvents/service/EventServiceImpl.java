@@ -18,20 +18,44 @@ public class EventServiceImpl implements EventService{
 
     @Override
     public Event createEvent(Event event) {
-        return eventRepository.save(event) ;
+        try{
+            return eventRepository.save(event) ;
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+        return null ;
+        
     }
 
     @Override
-    public Optional<List<Event>> getAllEvents() {
+    public List<Event> getAllEvents() {
+        try{
+            return eventRepository.findAll() ;
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
         return null ;
     }
 
     @Override
-    public void deleteEvent(int ID) {} 
+    public void deleteEvent(Long ID) {
+        try{
+            eventRepository.deleteById(ID) ;
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
+    } 
 
     @Override
-    public Optional<Event> getEventById(int ID)
+    public Optional<Event> getEventById(Long ID)
     {
+        try{
+            return eventRepository.findById(ID) ;
+        }catch(Exception e) {
+            System.out.println(e);
+        }
         return null ;
     } 
     
