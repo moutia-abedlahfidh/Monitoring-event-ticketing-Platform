@@ -1,5 +1,7 @@
 package com.example.users.Service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.example.users.Model.user;
@@ -26,9 +28,19 @@ public class ServiceUser implements UserServiceRepository{
     }
 
     @Override
-    public Boolean CheckLogin(String email, String password) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'CheckLogin'");
+    public Optional<user> CheckLogin(String email,String password) {
+        try{
+            Optional<user> user_exists = databaseRepository.findByEmailAndPassword(email,password);
+            if (user_exists != null) {
+                return user_exists ;
+            } else {
+                return null ;
+            }
+
+        }catch(Exception e)
+        {
+            throw new RuntimeException("Fehler beim erstellen des Users ",e);
+        }
     }
     
 }

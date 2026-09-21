@@ -1,6 +1,6 @@
 package com.example.users.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.Optional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +22,9 @@ public class controller {
         service.createUser(user);
     }
 
-    @GetMapping("/ckeckuser")
-    public void CheckUser(String Email,String Password)
+    @PostMapping("/ckeckuser")
+    public Optional<user> CheckUser(@RequestBody user user)
     {
-        
+        return service.CheckLogin(user.getEmail(), user.getPassword()) ;
     }
 }
