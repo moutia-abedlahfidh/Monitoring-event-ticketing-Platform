@@ -22,7 +22,6 @@ public class Event {
     private Integer availableSeats;
 
     protected Event() {
-        // Jackson/JPA brauchen diesen leeren Konstruktor
     }
 
     public Event(String title, String city, LocalDateTime date, BigDecimal priceFrom, Integer availableSeats) {
