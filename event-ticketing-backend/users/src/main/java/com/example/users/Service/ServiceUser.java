@@ -3,7 +3,7 @@ package com.example.users.Service;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
+import ch.qos.logback.core.subst.Token;
 import com.example.users.Model.user;
 import com.example.users.Repository.DatabaseRepository;
 import com.example.users.Repository.UserServiceRepository;
@@ -25,6 +25,14 @@ public class ServiceUser implements UserServiceRepository{
         {
             throw new RuntimeException("Fehler beim erstellen des Users ",e);
         }
+    }
+
+    //TODO create Methode to update Token
+    @Override
+    public void saveToken(user u,String token)
+    {
+        u.setCurrentToken(token);
+        databaseRepository.save(u);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.example.users.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -12,6 +14,9 @@ public class user {
     private String Nachname ;
     private String email ;
     private String password ;
+
+    @JsonIgnore
+    private String currentToken ;
 
     protected user() {}
     public user(String Vorname,String Nachname,String Email,String Password) {
@@ -35,6 +40,9 @@ public class user {
     public String getPassword() {
         return password ;
     }
+    public String getCurrentToken() {
+         return currentToken; 
+    }
 
     //Setter
     public void SetEmail(String email){
@@ -46,4 +54,6 @@ public class user {
     public void setNachname(String Nachname){
         this.Nachname=Nachname ;
     }
+    public void setCurrentToken(String currentToken) 
+    { this.currentToken = currentToken; }
 }
