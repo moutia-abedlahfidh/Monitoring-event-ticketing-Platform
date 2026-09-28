@@ -17,10 +17,10 @@ public class ServiceUser implements UserServiceRepository{
         this.databaseRepository = databaseRepository ;
     }
     @Override
-    public void createUser(user user) {
+    public user createUser(user user) {
         // TODO Generate New User
         try{
-            databaseRepository.save(user);
+            return databaseRepository.save(user);
         }catch(Exception e)
         {
             throw new RuntimeException("Fehler beim erstellen des Users ",e);

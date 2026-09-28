@@ -3,11 +3,9 @@ package com.example.users.Controller;
 import java.util.Map;
 import java.util.Optional;
 
-import org.springframework.boot.security.oauth2.server.resource.autoconfigure.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import com.example.users.Service.ServiceUser ;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +25,15 @@ public class controller {
     }
 
     @PostMapping("/create")
-    public void createUser(@RequestBody user user){
-        service.createUser(user);
+    public ResponseEntity<Map<String,String>> createUser(@RequestBody user user){
+        user created_user = service.createUser(user) ;
+        if (created_user != null) {
+            String token = Jwtservice.generateToken(user.getEmail());
+            service.saveToken(user, token);
+            return ResponseEntity.ok(Map.of("token", token));
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(Map.of("error", "E-Mail oder Passwort falsch"));
     }
 
     @PostMapping("/ckeckuser")
