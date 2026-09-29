@@ -6,7 +6,7 @@
 // POST /api/users/login            -> Login, gibt { token } zurück
 //
 // Passe BASE_URL an dein Gateway an, falls du nicht über den Vite-Proxy läufst.
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? '/api'
+const BASE_URL = 'http://localhost:8080/api'
 
 function getToken() {
   return localStorage.getItem('token')
