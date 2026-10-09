@@ -19,8 +19,7 @@ spec:
     spec:
       containers:
         - name : frontend
-          image: event-ticketing-frontend:latest
-          imagePullPolicy: Never
-
+          image: eventticketingacr2026.azurecr.io/frontend:v3
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80

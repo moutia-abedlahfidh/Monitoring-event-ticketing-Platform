@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: monitoringeventticketingplatform-gateway:latest
-          imagePullPolicy: Never
+          image: eventticketingacr2026.azurecr.io/gateway:v3
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

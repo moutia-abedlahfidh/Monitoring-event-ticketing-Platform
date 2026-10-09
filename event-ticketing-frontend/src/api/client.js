@@ -6,7 +6,7 @@
 // POST /api/users/login            -> Login, gibt { token } zurück
 //
 // Passe BASE_URL an dein Gateway an, falls du nicht über den Vite-Proxy läufst.
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://gateway.purplecliff-30d5a74e.germanywestcentral.azurecontainerapps.io/api'
 
 function getToken() {
   return localStorage.getItem('token')

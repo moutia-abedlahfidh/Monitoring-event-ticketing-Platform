@@ -19,7 +19,8 @@ spec:
     spec:
       containers:
         - name: event
-          image: monitoringeventticketingplatform-event:latest
+          image: eventticketingacr2026.azurecr.io/event-service:v2
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
 
