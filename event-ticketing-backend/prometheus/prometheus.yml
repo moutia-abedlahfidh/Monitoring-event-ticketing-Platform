@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: users-service
+    scheme: https
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - users.purplecliff-30d5a74e.germanywestcentral.azurecontainerapps.io
+
+  - job_name: event-service
+    scheme: https
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - events.purplecliff-30d5a74e.germanywestcentral.azurecontainerapps.io
+
+  - job_name: gateway
+    scheme: https
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - gateway.purplecliff-30d5a74e.germanywestcentral.azurecontainerapps.io
