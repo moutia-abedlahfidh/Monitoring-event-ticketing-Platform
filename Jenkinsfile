@@ -60,9 +60,9 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'azure-sp',
-                        usernameVariable: 'AZ_CLIENT_ID',
-                        passwordVariable: 'AZ_CLIENT_SECRET'
+                        credentialsId: 'jenkins-sp',
+                        usernameVariable: '1f5fa606-1363-4782-9abd-223d6e6f59f2',
+                        passwordVariable: 'Pl58Q~Y9WVSDssS~tDxeihDd3Jl16~G3YoAUibLa'
                     )
                 ]) {
                     sh '''
