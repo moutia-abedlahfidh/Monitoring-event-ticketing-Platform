@@ -60,7 +60,7 @@ pipeline {
             steps {
                 withCredentials([
                     usernamePassword(
-                        credentialsId: 'azure-sp',
+                        credentialsId: 'c127ea7b-9802-418e-b09a-f36b11bb0129',
                         usernameVariable: '1f5fa606-1363-4782-9abd-223d6e6f59f2',
                         passwordVariable: 'Pl58Q~Y9WVSDssS~tDxeihDd3Jl16~G3YoAUibLa'
                     )
