@@ -15,7 +15,7 @@ pipeline {
         IMAGE_NAME = 'users-service'
 
         AZURE_SUBSCRIPTION_ID = '0dbd7d27-4116-4ef2-8f8e-d17422383bd2'
-        AZURE_TENANT_ID = 'DEINE_TENANT_ID'
+        AZURE_TENANT_ID = 'e3304a85-44b0-4e4e-a35f-f0a94ed19ad7'
 
         IMAGE_TAG = "jenkins-${BUILD_NUMBER}"
     }
