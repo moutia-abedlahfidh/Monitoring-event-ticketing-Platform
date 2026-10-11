@@ -31,10 +31,11 @@ pipeline {
         stage('Build Spring Boot') {
             steps {
                 dir('event-ticketing-backend/users') {
-                    sh 'chmod +x gradlew'
-                    sh './gradlew clean bootJar --no-daemon'
-                }
-            }
+            sh 'java -version; echo $JAVA_HOME'
+            sh 'chmod +x gradlew'
+            sh './gradlew clean bootJar --no-daemon'
+        }
+    }
         }
 
         stage('Check Docker and Azure CLI') {
