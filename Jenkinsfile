@@ -33,7 +33,7 @@ pipeline {
                 dir('event-ticketing-backend/users') {
             sh 'java -version; echo $JAVA_HOME'
             sh 'chmod +x gradlew'
-            sh './gradlew clean bootJar --no-daemon'
+            sh './gradlew clean bootJar --no-daemon -Porg.gradle.java.installations.paths="$JAVA_HOME"'
         }
     }
         }
