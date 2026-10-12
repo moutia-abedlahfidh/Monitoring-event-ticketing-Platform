@@ -62,7 +62,7 @@ pipeline {
                     usernamePassword(
                         credentialsId: 'c362d516-fa57-4c2f-ae20-8becbf834410',
                         usernameVariable: '1f5fa606-1363-4782-9abd-223d6e6f59f2',
-                        passwordVariable: 'Pl58Q~Y9WVSDssS~tDxeihDd3Jl16~G3YoAUibLa'
+                        passwordVariable: '1f5fa606-1363-4782-9abd-223d6e6f59f2'
                     )
                 ]) {
                     sh '''
