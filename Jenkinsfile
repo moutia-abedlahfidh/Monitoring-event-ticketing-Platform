@@ -72,7 +72,7 @@ pipeline {
                           --username "$AZ_CLIENT_ID" \
                           --password "$AZ_CLIENT_SECRET" \
                           --tenant "$AZURE_TENANT_ID" \
-                          --output none
+                          --allow-no-subscriptions
 
                         az account set \
                           --subscription "$AZURE_SUBSCRIPTION_ID"
