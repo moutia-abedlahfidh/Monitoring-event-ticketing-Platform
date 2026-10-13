@@ -13,8 +13,10 @@ pipeline {
         RESOURCE_GROUP = 'rg-7bca'
         CONTAINER_APP_USERS = 'users'
         CONTAINER_APP_EVENTS = 'events'
+        CONTAINER_APP_GATEWAY = 'gateway'
         IMAGE_NAME_USERS = 'users-service'
         IMAGE_NAME_EVENTS = 'event-service'
+        IMAGE_NAME_GATEWAY = 'gateway'
 
         AZURE_SUBSCRIPTION_ID = '0dbd7d27-4116-4ef2-8f8e-d17422383bd2'
         AZURE_TENANT_ID = 'e3304a85-44b0-4e4e-a35f-f0a94ed19ad7'
@@ -41,6 +43,10 @@ pipeline {
             sh 'chmod +x gradlew'
             sh './gradlew clean bootJar --no-daemon'
         }
+        dir('event-ticketing-backend/APIGateway') {
+            sh 'chmod +x gradlew'
+            sh './gradlew clean bootJar --no-daemon'
+        }
     }
         }
 
@@ -64,6 +70,13 @@ pipeline {
                     sh '''
                     docker build \
                         -t ${ACR_SERVER}/${IMAGE_NAME_EVENTS}:${IMAGE_TAG} .
+                    '''
+                }
+                dir('event-ticketing-backend/APIGateway')
+                {
+                    sh '''
+                    docker build \
+                        -t ${ACR_SERVER}/${IMAGE_NAME_GATEWAY}:${IMAGE_TAG} .
                     '''
                 }
             }
@@ -106,6 +119,10 @@ pipeline {
                     docker push \
                       ${ACR_SERVER}/${IMAGE_NAME_EVENTS}:${IMAGE_TAG}
                 '''
+                sh '''
+                    docker push \
+                      ${ACR_SERVER}/${IMAGE_NAME_GATEWAY}:${IMAGE_TAG}
+                '''
             }
         }
 
@@ -123,6 +140,12 @@ pipeline {
                       --resource-group "$RESOURCE_GROUP" \
                       --image ${ACR_SERVER}/${IMAGE_NAME_EVENTS}:${IMAGE_TAG}
                 '''
+                sh '''
+                    az containerapp update \
+                      --name "$CONTAINER_APP_GATEWAY" \
+                      --resource-group "$RESOURCE_GROUP" \
+                      --image ${ACR_SERVER}/${IMAGE_NAME_GATEWAY}:${IMAGE_TAG}
+                '''
             }
         }
 
@@ -138,6 +161,13 @@ pipeline {
                 sh '''
                     az containerapp show \
                       --name "$CONTAINER_APP_EVENTS" \
+                      --resource-group "$RESOURCE_GROUP" \
+                      --query "{image:properties.template.containers[0].image,latestRevision:properties.latestRevisionName,readyRevision:properties.latestReadyRevisionName}" \
+                      -o json
+                '''
+                sh '''
+                    az containerapp show \
+                      --name "$CONTAINER_APP_GATEWAY" \
                       --resource-group "$RESOURCE_GROUP" \
                       --query "{image:properties.template.containers[0].image,latestRevision:properties.latestRevisionName,readyRevision:properties.latestReadyRevisionName}" \
                       -o json
