@@ -39,7 +39,7 @@ pipeline {
         }
         dir('event-ticketing-backend/ManageEvents') {
             sh 'chmod +x gradlew'
-            sh './gradlew clean bootJar no daemon'
+            sh './gradlew clean bootJar --no-daemon'
         }
     }
         }
