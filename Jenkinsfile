@@ -63,7 +63,7 @@ pipeline {
                 {
                     sh '''
                     docker build \
-                        -t ${ACR_SERVER}/${IMAGE_NAME_EVENTS}:${IMAGE_TAG}
+                        -t ${ACR_SERVER}/${IMAGE_NAME_EVENTS}:${IMAGE_TAG} .
                     '''
                 }
             }
